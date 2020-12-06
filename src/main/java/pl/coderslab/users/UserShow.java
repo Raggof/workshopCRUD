@@ -10,24 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(value = "/userAdd")
-public class UserAdd extends HttpServlet {
+@WebServlet(value = "/user/show")
+public class UserShow extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        User user = new User();
-        UserDao userDao = new UserDao();
-
-        user.setUserName(request.getParameter("userName"));
-        user.setEmail(request.getParameter("userEmail"));
-        user.setPassword(request.getParameter("userPassword"));
-
-        userDao.createUser(user);
-        response.sendRedirect(request.getContextPath() + "/user/list");
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            getServletContext().getRequestDispatcher("/users/add.jsp")
-                    .forward(request, response);
+
+        UserDao userDao = new UserDao();
+        String id = request.getParameter("id");
+
+        User readUserId = userDao.readUser(Integer.parseInt(id));
+        request.setAttribute("user", readUserId);
+
+        getServletContext().getRequestDispatcher("/users/show.jsp")
+                .forward(request, response);
     }
 }

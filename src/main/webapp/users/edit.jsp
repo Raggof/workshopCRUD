@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="userEmail">Email</label>
-                <input value="${user.userEmail}" name="userEmail" type="email" class="form-control" placeholder="User email" id="userEmail">
+                <input value="${user.email}" name="userEmail" type="email" class="form-control" placeholder="User email" id="userEmail">
             </div>
             <div class="form-group">
                 <label for="userPassword">Password</label>
